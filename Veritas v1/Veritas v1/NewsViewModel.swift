@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 struct NewsResponse: Codable {
     let articles: [Article]
@@ -24,7 +25,7 @@ class NewsViewModel: ObservableObject {
     @Published var isLoading = false
     
     // Sign up at newsapi.org to get your free key
-    let apiKey = "YOUR_API_KEY_HERE"
+    let apiKey = "34a8876792c749148899bcf77296b913"
 
     func fetchAndAnalyze(country: String, category: String) {
         isLoading = true
@@ -52,3 +53,4 @@ class NewsViewModel: ObservableObject {
         }
     }
 }
+
