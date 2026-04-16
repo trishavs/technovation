@@ -38,7 +38,7 @@ struct ContentView: View {
                         .cornerRadius(10)
                 }
                 
-                NavigationLink(destination: BlankView(title: "News Direction")) {
+                NavigationLink(destination: NewsDirectionView()) {
                     Text("News Direction")
                         .frame(maxWidth: .infinity)
                         .padding()
