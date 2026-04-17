@@ -49,7 +49,6 @@ struct ContentView: View {
                     
                     navButton(title: "News Direction", destination: NewsDirectionView())
                     
-                    navButton(title: "Mini-Games", destination: BlankView(title: "Something else"))
                 }
                 .padding(.horizontal, 50)
                 
