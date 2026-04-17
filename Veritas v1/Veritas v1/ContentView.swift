@@ -24,12 +24,12 @@ struct ContentView: View {
                     Text("Lessons")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color(red: 154/255, green: 166/255, blue: 178/255)) // Button color
-                        .foregroundColor(Color(red: 0/255, green: 19/255, blue: 62/255)) // Text color
+                        .background(Color(red: 154/255, green: 166/255, blue: 178/255))
+                        .foregroundColor(Color(red: 0/255, green: 19/255, blue: 62/255))
                         .cornerRadius(10)
                 }
                 
-                NavigationLink(destination: BlankView(title: "Bias Checker")) {
+                NavigationLink(destination: BiasCheckerView().navigationBarBackButtonHidden(true)) {
                     Text("Bias Checker")
                         .frame(maxWidth: .infinity)
                         .padding()
