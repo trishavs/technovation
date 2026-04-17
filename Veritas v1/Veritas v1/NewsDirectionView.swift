@@ -12,7 +12,7 @@ struct NewsDirectionView: View {
     @State private var selectedCategory = "technology"
     @Environment(\.dismiss) var dismiss
     
-    let countries = ["us", "gb", "ca", "in", "fr"]
+    let countries = ["United States", "United Kingdom", "Canada", "India", "France"]
     let categories = ["business", "technology", "science", "health"]
     
     // Veritas Palette
