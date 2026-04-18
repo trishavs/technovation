@@ -1,3 +1,9 @@
+//
+//  MisinformationLessonView.swift
+//
+//
+//  Created by Katelyn Mikheev on 4/17/2026
+//
 import SwiftUI
 
 struct MisinformationLessonView: View {
