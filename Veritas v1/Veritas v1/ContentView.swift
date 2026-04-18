@@ -45,7 +45,7 @@ struct ContentView: View {
                 VStack(spacing: 18) {
                     navButton(title: "Bias Checker", destination: BiasCheckerView().navigationBarBackButtonHidden(true))
                     
-                    navButton(title: "Education", destination: BlankView(title: "Lessons"))
+                    navButton(title: "Education", destination: EducationView().navigationBarBackButtonHidden(true))
                     
                     navButton(title: "News Direction", destination: NewsDirectionView())
                     
