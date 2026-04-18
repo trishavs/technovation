@@ -9,8 +9,9 @@ import SwiftUI
 struct MisinformationLessonView: View {
     var backToMain: () -> Void
 
-    // Tracks which page (1 through 7) the user is on
+    // Tracks which page the user is on
     @State private var currentPage = 1
+    @State private var showQuiz = false
 
     // Total number of pages in this lesson (including quiz)
     let totalPages = 7
@@ -19,7 +20,7 @@ struct MisinformationLessonView: View {
     let steelGray = Color(red: 154/255, green: 166/255, blue: 178/255)
     let lightPeriwinkle = Color(red: 236/255, green: 236/255, blue: 255/255)
 
-    // --- PAGE TITLES ---
+    // Page titles
     let pageTitles = [
         "Misinformation Red Flags",  // Page 1
         "Red Flag 1: Emotional Manipulation",  // Page 2 — Emotional manipulation
@@ -27,10 +28,10 @@ struct MisinformationLessonView: View {
         "Red Flag 3: Urgency or Pressure Manipulation",   // Page 4 — urgency/pressure manipulation
         "Red Flag 4: Outdated/No Context",    // Page 5 — outdated or no context
         "Red Flag 5: Poor Quality",   // Page 6 — poor quality or improper grammer/writing
-        "Quiz",                          // Page 7 — mini quiz
+        "Quiz",    // Page 7 — mini quiz
     ]
 
-    // --- PAGE TEXT CONTENT ---
+    // Page text
     let pageTexts = [
         "In this lesson, we will be covering what red flags you can identify in order to discern whether a source is credible or not. You can also click the buttons below to quickly get to any topic of the lesson you would like. ",  // Page 1 text
         "What it is: When misinformation tries to make you scared, angry, etc. so that you react quickly instead of thinking carefully. The goal is to influence you rather than inform you.",  // Page 2 text
@@ -89,12 +90,26 @@ struct MisinformationLessonView: View {
                                         )
                                 }
                             }
+
+                            // Goes straight to the Quiz page (page 7)
+                            Button(action: {
+                                currentPage = 7
+                            }) {
+                                Text("Go straight to the quiz")
+                                    .fontWeight(.bold)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 10)
+                                    .background(navy)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
                         }
                     }
 
-                    // "Start Quiz" button — only shown on page 7 (the quiz page)
+                    // "Start Quiz" button
                     if currentPage == 7 {
                         Button(action: {
+                            showQuiz = true
                         }) {
                             Text("Start Quiz")
                                 .fontWeight(.bold)
@@ -112,11 +127,11 @@ struct MisinformationLessonView: View {
 
             // Bottom button formatting
             HStack(spacing: 15) {
-                // "Back to Main" always shows on every page
+                // "Back to Lessons" always shows on every page
                 Button(action: {
                     backToMain()
                 }) {
-                    Text("Back to Main")
+                    Text("Back to Lessons")
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
                         .padding()
@@ -159,5 +174,13 @@ struct MisinformationLessonView: View {
             .padding(.bottom, 30)
         }
         .background(Color.white.ignoresSafeArea())
+        // When showQuiz becomes true, puts the QuizView onto the screen
+        .navigationDestination(isPresented: $showQuiz) {
+            QuizView(backToMain: {
+                showQuiz = false
+                backToMain()
+            })
+            .navigationBarBackButtonHidden(true)
+        }
     }
 }
