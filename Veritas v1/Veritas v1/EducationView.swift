@@ -13,6 +13,8 @@ struct EducationView: View {
     let steelGray = Color(red: 154/255, green: 166/255, blue: 178/255)
 
     @State private var showLesson1 = false
+    @State private var showLesson2 = false
+    @State private var showLesson3 = false
 
     var body: some View {
         VStack(spacing: 20) {
@@ -38,7 +40,33 @@ struct EducationView: View {
             }
             .padding(.horizontal)
 
-            // Future lesson buttons would go here (same style as above)
+            // Lesson 2 button
+            Button(action: {
+                showLesson2 = true
+            }) {
+                Text("Lesson 2: Artificial Intelligence")
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(steelGray)
+                    .foregroundColor(navy)
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
+
+            // Lesson 3 button
+            Button(action: {
+                showLesson3 = true
+            }) {
+                Text("Lesson 3: Privacy and Cybersecurity")
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(steelGray)
+                    .foregroundColor(navy)
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
 
             Spacer()
 
@@ -61,11 +89,33 @@ struct EducationView: View {
         // When showLesson1 becomes true, put the lesson view onto the screen
         .navigationDestination(isPresented: $showLesson1) {
             MisinformationLessonView(backToMain: {
-                // This closes the lesson and the education page, going all the way home
                 showLesson1 = false
                 dismiss()
             })
             .navigationBarBackButtonHidden(true)
         }
+        .navigationDestination(isPresented: $showLesson2) {
+            BlankLessonView(dismissToRoot: {
+                showLesson2 = false
+                dismiss()
+            })
+            .navigationBarBackButtonHidden(true)
+        }
+        .navigationDestination(isPresented: $showLesson3) {
+            BlankLessonView(dismissToRoot: {
+                showLesson3 = false
+                dismiss()
+            })
+            .navigationBarBackButtonHidden(true)
+        }
+    }
+}
+
+// Page for lessons 2 and 3
+struct BlankLessonView: View {
+    var dismissToRoot: () -> Void
+
+    var body: some View {
+        Color.white.ignoresSafeArea()
     }
 }
